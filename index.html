@@ -2,35 +2,80 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Unlocking...</title>
+<title>System Access</title>
 
 <style>
 body{
-background:black;
-color:#00ff00;
+margin:0;
+background:#000;
+overflow:hidden;
 font-family:monospace;
-text-align:center;
-padding-top:100px;
+color:#00ff00;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
 
-#video{
-display:none;
+#bg{
+position:fixed;
 width:100%;
+height:100%;
+background:radial-gradient(circle,#003300 0%,#000000 70%);
+opacity:.6;
+z-index:-1;
+}
+
+#container{
+text-align:center;
+}
+
+h1{
+font-size:30px;
+letter-spacing:3px;
+}
+
+#progress{
+font-size:50px;
+margin-top:20px;
+}
+
+#unlock{
+display:none;
+font-size:45px;
+animation:pulse 1s infinite;
+}
+
+iframe{
+display:none;
+width:100vw;
 height:100vh;
 border:none;
 }
 
-#loading{
-font-size:24px;
+@keyframes pulse{
+0%{opacity:0.2;}
+50%{opacity:1;}
+100%{opacity:0.2;}
 }
 </style>
+
 </head>
 
 <body>
 
-<div id="loading">
-<h1>CONNECTING TO DEVICE...</h1>
-<p id="progress">0%</p>
+<div id="bg"></div>
+
+<div id="container">
+
+<h1>SYSTEM BREACH DETECTED</h1>
+
+<div id="progress">0%</div>
+
+<div id="unlock">
+UNLOCKING PHONE...
+</div>
+
 </div>
 
 <iframe
@@ -45,25 +90,33 @@ let p = 0;
 
 let timer = setInterval(() => {
 
-p += 5;
+p++;
 
-document.getElementById("progress").innerHTML =
-"UNLOCKING... " + p + "%";
+document.getElementById("progress").innerHTML = p + "%";
 
 if(p >= 100){
 
 clearInterval(timer);
 
-document.getElementById("loading").style.display="none";
+document.getElementById("progress").style.display="none";
 
-document.getElementById("video").style.display="block";
+document.getElementById("unlock").style.display="block";
 
-document.getElementById("video").src =
-"https://www.youtube.com/watch?v=K8FjE1v16GY";
+setTimeout(() => {
+
+document.getElementById("container").style.display="none";
+
+let vid = document.getElementById("video");
+
+vid.style.display="block";
+
+vid.src="https://www.youtube.com/embed/K8FjE1v16GY?autoplay=1";
+
+},3000);
 
 }
 
-},150);
+},50);
 
 </script>
 
